@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SQL Functions and Operators</title>
+</head>
+<body>
+  <button data-action="createdb">CREATE DB</button>
+  <button data-action="createtable">CREATE TABLE</button>
+  <button data-action="addstudent">ADD DATA</button>
+  <button data-action="min">MIN()</button>
+  <button data-action="max">MAX()</button>
+  <button data-action="and">AND Operator</button>
+  <button data-action="or">OR Operator</button>
+  <button data-action="not">NOT Operator</button>
+  <button data-action="like">LIKE Operator</button>
+  <button data-action="between">BETWEEN Operator</button>
+  <button data-action="union">UNION Operator</button>
+
+  <script>
+    function handleResponse(response) {
+      response.text().then((text) => {
+        console.log(text);
+      });
+    }
+
+    function fetchData(action) {
+      fetch(`http://localhost:3000/${action}`, { method: 'GET' }).then(handleResponse);
+    }
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      const action = target.dataset.action;
+
+      if (action) {
+        fetchData(action);
+      }
+    });
+  </script>
+</body>
+</html>
